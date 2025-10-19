@@ -1,0 +1,85 @@
+[gd_scene load_steps=8 format=3 uid="uid://d23qu1w78wiil"]
+
+[ext_resource type="Texture2D" uid="uid://cmpic2qexncks" path="res://world/sky.png" id="1_4yuc1"]
+[ext_resource type="Texture2D" uid="uid://dbej8l01kxp0u" path="res://Titlescreen/Title.png" id="1_vp4oe"]
+[ext_resource type="Script" uid="uid://ds022uco7wvmo" path="res://Titlescreen/button.gd" id="2_b86bu"]
+[ext_resource type="Texture2D" uid="uid://df2hfgpkoqomf" path="res://world/land.png" id="2_ew0jt"]
+[ext_resource type="PackedScene" uid="uid://cdycf80o0h0ox" path="res://world/tree3.tscn" id="3_lmxfk"]
+[ext_resource type="PackedScene" uid="uid://yxaba5gvv2xu" path="res://world/tree1.tscn" id="4_hq3xc"]
+[ext_resource type="PackedScene" uid="uid://cgf7w6c1orplq" path="res://world/tree2.tscn" id="5_hq3xc"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -5169
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+texture_filter = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_4yuc1")
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.0
+offset_top = -116.99997
+offset_right = -19.0
+offset_bottom = -85.99997
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.4905586, 2.4905586)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Start game"
+script = ExtResource("2_b86bu")
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -358.0
+offset_top = -298.0
+offset_right = 353.57886
+offset_bottom = -167.99994
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_vp4oe")
+
+[node name="Land" type="Sprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(669, 560)
+scale = Vector2(16, 16)
+texture = ExtResource("2_ew0jt")
+region_enabled = true
+region_rect = Rect2(0, 44, 558, 20.25)
+
+[node name="Sprite2D" parent="." instance=ExtResource("3_lmxfk")]
+position = Vector2(195, 370)
+scale = Vector2(18, 18)
+
+[node name="Sprite2D2" parent="." instance=ExtResource("4_hq3xc")]
+position = Vector2(1066, 415)
+
+[node name="Sprite2D3" parent="." instance=ExtResource("4_hq3xc")]
+position = Vector2(1486.0001, 343)
+scale = Vector2(18, 18)
+
+[node name="Sprite2D4" parent="." instance=ExtResource("5_hq3xc")]
+z_index = -1
+position = Vector2(2233, 402)
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[connection signal="pressed" from="CanvasLayer/Button" to="CanvasLayer/Button" method="_on_pressed"]

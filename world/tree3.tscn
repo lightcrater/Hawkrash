@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdycf80o0h0ox"]
+
+[ext_resource type="Texture2D" uid="uid://ce2wk8w16s4uh" path="res://world/trees.png" id="1_bh23t"]
+
+[node name="Sprite2D" type="Sprite2D"]
+scale = Vector2(12, 12)
+texture = ExtResource("1_bh23t")
+region_enabled = true
+region_rect = Rect2(45, 15, 16, 14)

@@ -1,0 +1,102 @@
+[gd_scene load_steps=14 format=3 uid="uid://cip1ey1pdu11p"]
+
+[ext_resource type="Script" uid="uid://b7yka5bi0ktq1" path="res://Player.gd" id="1_4ntmi"]
+[ext_resource type="Texture2D" uid="uid://dbxy37u885ks2" path="res://Player/bird.png" id="2_4ntmi"]
+[ext_resource type="Texture2D" uid="uid://bfmo44prf6mx8" path="res://Player/charge bar.png" id="3_btcbx"]
+[ext_resource type="Texture2D" uid="uid://be0yj5ojcqc61" path="res://world/points.png" id="4_gwnis"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gwnis"]
+radius = 32.140316
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_btcbx"]
+atlas = ExtResource("2_4ntmi")
+region = Rect2(0, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gwnis"]
+atlas = ExtResource("2_4ntmi")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k53q1"]
+atlas = ExtResource("2_4ntmi")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k53q1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_btcbx")
+}],
+"loop": true,
+"name": &"Boosting",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gwnis")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k53q1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fhl08"]
+atlas = ExtResource("3_btcbx")
+region = Rect2(0, 0, 13, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtle1"]
+atlas = ExtResource("3_btcbx")
+region = Rect2(16, 0, 13, 8)
+
+[sub_resource type="SystemFont" id="SystemFont_k53q1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fhl08"]
+font = SubResource("SystemFont_k53q1")
+font_size = 32
+
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["player"]]
+script = ExtResource("1_4ntmi")
+
+[node name="collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_gwnis")
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(5, 0)
+scale = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_k53q1")
+autoplay = "default"
+flip_h = true
+
+[node name="hurtbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="hurtbox" type="CollisionShape2D" parent="hurtbox"]
+shape = SubResource("CircleShape2D_gwnis")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer"]
+offset_right = 16.0
+offset_bottom = 16.0
+scale = Vector2(7.9999995, 7.9999995)
+max_value = 30.0
+step = 10.0
+texture_under = SubResource("AtlasTexture_fhl08")
+texture_progress = SubResource("AtlasTexture_vtle1")
+
+[node name="Points" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(32, 96)
+scale = Vector2(8, 8)
+texture = ExtResource("4_gwnis")
+
+[node name="Label" type="Label" parent="CanvasLayer/Points"]
+offset_left = 5.0
+offset_top = -5.0
+offset_right = 45.0
+offset_bottom = 40.0
+scale = Vector2(0.2599529, 0.2599529)
+text = "0"
+label_settings = SubResource("LabelSettings_fhl08")
