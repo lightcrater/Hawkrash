@@ -28,20 +28,20 @@ func _ready() -> void:
 
 @warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
-	
+
 	targetAngle = get_angle_to(target)
 	if targetAngle < 0:
 		angle -= turnStr*turnmod
 	elif targetAngle >0:
 		angle += turnStr*turnmod
-	
+
 	dir = Vector2(cos(angle),sin(angle)).normalized()
-	
+
 	velocity = -dir * speed
-	
+
 	spriteManager()
 	boostManager()
-	
+
 	move_and_slide()
 
 func spriteManager()->void:
@@ -50,7 +50,7 @@ func spriteManager()->void:
 		$sprite.flip_v = true
 	else:
 		$sprite.flip_v = false
-	
+
 	if boosting:
 		$sprite.play("charge")
 	else:
@@ -60,15 +60,17 @@ func boostManager()->void:
 	if boost_len >= max_boost_len and boosting == false:
 		boosting = true
 		target = player[0].global_position
-	
+
 	if boosting == false and boost_len <= max_boost_len:
 		turnmod = 1
 		speed = randi_range(speeds[0],speeds[1])
 		boost_len += boost_regen
+
 	elif boosting == true and boost_len > 0:
 		speed = randi_range(boostspeeds[0],boostspeeds[1])
 		boost_len -= boost_cost
 		turnmod = 2
+		
 	elif boosting == true and boost_len <= 0:
 		turnmod = 1
 		boosting = false

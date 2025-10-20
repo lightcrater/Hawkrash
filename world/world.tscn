@@ -309,6 +309,14 @@ scale = Vector2(1.5, 1.5)
 position = Vector2(174.5, -11.75)
 scale = Vector2(1.5, 1.5)
 
+[node name="Sprite2D2" type="Sprite2D" parent="Barriers"]
+z_index = -4096
+z_as_relative = false
+texture_filter = 2
+position = Vector2(290.99988, 560.5)
+scale = Vector2(4338.0005, 513.50006)
+texture = ExtResource("5_mmdvd")
+
 [node name="Player" parent="." instance=ExtResource("1_6xmxd")]
 position = Vector2(576, 376)
 
@@ -326,20 +334,5 @@ drag_vertical_enabled = true
 wait_time = 2.0
 one_shot = true
 autostart = true
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = -5169
-visible = false
-
-[node name="Sky" type="TextureRect" parent="CanvasLayer"]
-texture_filter = 2
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = 488.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("5_mmdvd")
-metadata/_edit_lock_ = true
 
 [connection signal="timeout" from="Bird spawner" to="." method="_on_bird_spawner_timeout"]
