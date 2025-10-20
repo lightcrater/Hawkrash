@@ -1,7 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://cehmfxq7mk42d"]
 
 [ext_resource type="PackedScene" uid="uid://cip1ey1pdu11p" path="res://Player/player.tscn" id="1_6xmxd"]
-[ext_resource type="PackedScene" uid="uid://cuf56mueiga5v" path="res://Enemy/enemy.tscn" id="1_4717r"]
 [ext_resource type="Script" uid="uid://b50jqde4nje" path="res://world/game.gd" id="1_h5o24"]
 [ext_resource type="Texture2D" uid="uid://ce2wk8w16s4uh" path="res://world/trees.png" id="4_fn3g3"]
 [ext_resource type="Texture2D" uid="uid://df2hfgpkoqomf" path="res://world/land.png" id="5_fn3g3"]
@@ -9,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cmpic2qexncks" path="res://world/sky.png" id="5_mmdvd"]
 [ext_resource type="Texture2D" uid="uid://wvgifsvof3t5" path="res://world/girraffe.png" id="6_ov2xu"]
 [ext_resource type="PackedScene" uid="uid://yxaba5gvv2xu" path="res://world/tree1.tscn" id="7_4papg"]
+[ext_resource type="Script" uid="uid://boij6b4ul6bse" path="res://world/Spawn Clouds.gd" id="7_mad0u"]
 [ext_resource type="PackedScene" uid="uid://cgf7w6c1orplq" path="res://world/tree2.tscn" id="8_fyhu2"]
 [ext_resource type="PackedScene" uid="uid://cdycf80o0h0ox" path="res://world/tree3.tscn" id="9_ov2xu"]
 
@@ -24,15 +24,6 @@ normal = Vector2(-1, 0)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_h5o24")
-
-[node name="enemy" parent="." instance=ExtResource("1_4717r")]
-position = Vector2(90, 146)
-
-[node name="enemy2" parent="." instance=ExtResource("1_4717r")]
-position = Vector2(276, 489)
-
-[node name="enemy3" parent="." instance=ExtResource("1_4717r")]
-position = Vector2(875, 53)
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
 scroll_scale = Vector2(1.1, 1)
@@ -196,6 +187,10 @@ position = Vector2(1104, 523)
 scale = Vector2(8, 8)
 texture = ExtResource("6_ov2xu")
 
+[node name="Clouds spawner" type="Node2D" parent="Parallax2D"]
+position = Vector2(502, -64)
+script = ExtResource("7_mad0u")
+
 [node name="Barriers" type="StaticBody2D" parent="."]
 collision_layer = 5
 collision_mask = 5
@@ -236,7 +231,7 @@ position = Vector2(2240, 304)
 shape = SubResource("WorldBoundaryShape2D_h5o24")
 metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Barriers"]
+[node name="Left" type="CollisionShape2D" parent="Barriers"]
 position = Vector2(-1840, 240)
 rotation = 1.5707964
 shape = SubResource("WorldBoundaryShape2D_mmdvd")
@@ -328,14 +323,15 @@ drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
 [node name="Bird spawner" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 2.0
 one_shot = true
 autostart = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -5169
+visible = false
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+[node name="Sky" type="TextureRect" parent="CanvasLayer"]
 texture_filter = 2
 anchors_preset = 15
 anchor_right = 1.0
