@@ -1,0 +1,86 @@
+[gd_scene load_steps=10 format=3 uid="uid://dbbsjwj1fvdp5"]
+
+[ext_resource type="Texture2D" uid="uid://ckpax6q4tkv8t" path="res://world/clouds.png" id="1_qmpyq"]
+[ext_resource type="Script" uid="uid://b4ty2qsiiry18" path="res://world/cloud pick.gd" id="2_g6pv2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h5n3n"]
+atlas = ExtResource("1_qmpyq")
+region = Rect2(0, 0, 21, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ef2u"]
+atlas = ExtResource("1_qmpyq")
+region = Rect2(21, 0, 21, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6brnt"]
+atlas = ExtResource("1_qmpyq")
+region = Rect2(42, 0, 21, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bydgx"]
+atlas = ExtResource("1_qmpyq")
+region = Rect2(0, 12, 21, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0roj"]
+atlas = ExtResource("1_qmpyq")
+region = Rect2(21, 12, 21, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_72sgo"]
+atlas = ExtResource("1_qmpyq")
+region = Rect2(42, 12, 21, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_svp8c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h5n3n")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ef2u")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6brnt")
+}],
+"loop": true,
+"name": &"3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bydgx")
+}],
+"loop": true,
+"name": &"4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0roj")
+}],
+"loop": true,
+"name": &"5",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_72sgo")
+}],
+"loop": true,
+"name": &"6",
+"speed": 5.0
+}]
+
+[node name="cloud sprite" type="AnimatedSprite2D"]
+modulate = Color(1, 1, 1, 0.5411765)
+scale = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_svp8c")
+animation = &"6"
+script = ExtResource("2_g6pv2")
